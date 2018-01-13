@@ -5,13 +5,12 @@ namespace GDAXClient.HttpClient
 {
     public class HttpClient : IHttpClient
     {
+        private static readonly HttpClient Client = new HttpClient();
+
         public async Task<HttpResponseMessage> SendASync(HttpRequestMessage httpRequestMessage)
         {
-            using (var httpClient = new System.Net.Http.HttpClient())
-            {
-                var result = await httpClient.SendAsync(httpRequestMessage);
+                var result = await Client.SendASync(httpRequestMessage);
                 return result;
-            }
         }
 
         public async Task<string> ReadAsStringAsync(HttpResponseMessage httpRequestMessage)
